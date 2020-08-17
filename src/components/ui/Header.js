@@ -11,6 +11,7 @@ import { theme } from '@material-ui/core/styles';
 
 import logo from '../../assets/logo.svg';
 import TabMenu from './TabMenu';
+import DrawerMenu from './DrawerMenu';
 
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
@@ -33,38 +34,10 @@ const useStyles = makeStyles((theme) => ({
       height: '5.5em',
     },
   },
-  tabContainer: {
-    marginLeft: 'auto',
-  },
-  tab: {
-    ...theme.typography.tab,
-    minWidth: 10,
-    marginLeft: '25px',
-  },
-  freeEstimate: {
-    ...theme.typography.estimate,
-    marginLeft: '50px',
-    marginRight: '25px',
-    borderRadius: '50px',
-    height: '45px',
-  },
   logoLink: {
     padding: 0,
     '&:hover': {
       backgroundColor: 'transparent',
-    },
-  },
-  menu: {
-    /* Used to pass down into the Paper component which is used by Menu */
-    backgroundColor: theme.palette.common.blue,
-    color: 'white',
-    borderRadius: '0px',
-  },
-  menuItem: {
-    ...theme.typography.tab,
-    opacity: 0.7,
-    '&:hover': {
-      opacity: 1,
     },
   },
 }));
@@ -182,7 +155,9 @@ export default function Header(props) {
               <img alt="Company logo" className={classes.logo} src={logo} />
             </Button>
 
-            {viewportIsMediumOrLess ? null : (
+            {viewportIsMediumOrLess ? (
+              <DrawerMenu />
+            ) : (
               <TabMenu
                 classes={classes}
                 navChoice={navChoice}

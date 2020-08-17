@@ -1,14 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { makeStyles } from '@material-ui/styles';
+
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 
+const useStyles = makeStyles((theme) => ({
+  menu: {
+    /* Used to pass down into the Paper component which is used by Menu */
+    backgroundColor: theme.palette.common.blue,
+    color: 'white',
+    borderRadius: '0px',
+  },
+  menuItem: {
+    ...theme.typography.tab,
+    opacity: 0.7,
+    '&:hover': {
+      opacity: 1,
+    },
+  },
+  tabContainer: {
+    marginLeft: 'auto',
+  },
+
+  tab: {
+    ...theme.typography.tab,
+    minWidth: 10,
+    marginLeft: '25px',
+  },
+  freeEstimate: {
+    ...theme.typography.estimate,
+    marginLeft: '50px',
+    marginRight: '25px',
+    borderRadius: '50px',
+    height: '45px',
+  },
+}));
+
 const TabMenuBar = ({
-  classes,
   navChoice,
   handleNavChange,
   selectedNavChoice,
@@ -20,6 +53,8 @@ const TabMenuBar = ({
   selectedMenuItem,
   servicesMenuItems,
 }) => {
+  const classes = useStyles();
+
   function renderMenuItem(menuItem, index) {
     return (
       <MenuItem
