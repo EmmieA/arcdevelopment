@@ -17,3 +17,23 @@ Standardizes alignment and is fully responsive, allowing for complex, profession
 **Testing, testing, testing**
 
 Thorough testing is a must!
+
+### Goals (without exception!)
+
+- Must look perfect on ALL screen sizes
+- Orientation independent
+- Resizable
+
+### Material-UI documentation on responsiveness
+
+**Material-UI > Guides > Responsive UI**
+
+The elements/concepts that go into responsiveness are listed on this page:
+
+- Grid
+- Container
+- Breakpoints
+- useMediaQuery
+- Hidden
+
+[Breakpoints](https://material-ui.com/customization/breakpoints/) go hand in hand with media queries to determine when a certain style should be applied.

@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { makeStyles, useTheme } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import Tab from '@material-ui/core/Tab';
+import Tabs from '@material-ui/core/Tabs';
 import Button from '@material-ui/core/Button';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { theme } from '@material-ui/core/styles';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import logo from '../../assets/logo.svg';
-import TabMenu from './TabMenu';
 
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
@@ -78,9 +79,6 @@ const servicesMenuItems = [
 
 export default function Header(props) {
   const classes = useStyles();
-  const theme = useTheme(); // gives access to the theme within component code
-
-  const viewportIsMediumOrLess = useMediaQuery(theme.breakpoints.down('md'));
 
   const [navChoice, setNavChoice] = useState(0);
   const [selectedNavChoice, setSelectedNavChoice] = useState(null);
@@ -160,6 +158,26 @@ export default function Header(props) {
     setSelectedMenuItem(i);
   };
 
+  function renderMenuItem(menuItem, index) {
+    return (
+      <MenuItem
+        key={`${menuItem.name}_${index}`}
+        component={Link}
+        to={menuItem.path}
+        // Calling multiple functions on a single event
+        onClick={(event) => {
+          handleMenuItemClick(event, index);
+          handleCloseClick();
+          setNavChoice(1); // we know this is the Services nav item so set it explicitly
+        }}
+        classes={{ root: classes.menuItem }}
+        selected={index === selectedMenuItem && selectedNavChoice === 1} // ensures it doesn't show as still selected after clicking on another top level nav item
+      >
+        {menuItem.name}
+      </MenuItem>
+    );
+  }
+
   return (
     <>
       <ElevationScroll>
@@ -169,21 +187,44 @@ export default function Header(props) {
               <img alt="Company logo" className={classes.logo} src={logo} />
             </Button>
 
-            {viewportIsMediumOrLess ? null : (
-              <TabMenu
-                classes={classes}
-                navChoice={navChoice}
-                handleNavChange={handleNavChange}
-                selectedNavChoice={selectedNavChoice}
-                navMenuIsOpen={navMenuIsOpen}
-                handleCloseClick={handleCloseClick}
-                handleOpenClick={handleOpenClick}
-                handleMenuItemClick={handleMenuItemClick}
-                setNavChoice={setNavChoice}
-                selectedMenuItem={selectedMenuItem}
-                servicesMenuItems={servicesMenuItems}
+            <Tabs
+              value={navChoice}
+              onChange={handleNavChange}
+              className={classes.tabContainer}
+              indicatorColor="primary"
+            >
+              <Tab className={classes.tab} component={Link} to="/" label="Home" />
+              <Tab
+                aria-owns={selectedNavChoice ? 'services-menu' : undefined}
+                aria-haspopup={selectedNavChoice ? 'true' : undefined}
+                onMouseOver={(event) => handleOpenClick(event)}
+                className={classes.tab}
+                component={Link}
+                to="/services"
+                label="Services"
               />
-            )}
+              <Tab className={classes.tab} component={Link} to="/revolution" label="The Revolution" />
+              <Tab className={classes.tab} component={Link} to="/about" label="About Us" />
+              <Tab className={classes.tab} component={Link} to="/contact" label="Contact Us" />
+            </Tabs>
+
+            <Button variant="contained" color="secondary" className={classes.freeEstimate}>
+              Free Estimate
+            </Button>
+
+            <Menu
+              id="services-menu"
+              anchorEl={selectedNavChoice}
+              open={navMenuIsOpen}
+              onClose={handleCloseClick}
+              // Passing a class to a child component which needs to be styled
+              // Find what components make up a parent by looking at the parent component's API page
+              classes={{ paper: classes.menu }}
+              MenuListProps={{ onMouseLeave: handleCloseClick }}
+              elevation={0}
+            >
+              {servicesMenuItems.map((menuItem, index) => renderMenuItem(menuItem, index))}
+            </Menu>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
