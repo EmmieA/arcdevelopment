@@ -11,6 +11,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import logo from '../../assets/logo.svg';
 import TabMenu from './TabMenu';
 import DrawerMenu from './DrawerMenu';
+import appRoutes from '../../common/appRoutes';
 
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
@@ -54,12 +55,7 @@ function ElevationScroll(props) {
   });
 }
 
-const servicesMenuItems = [
-  { name: 'Services', path: '/services' },
-  { name: 'Custom Software Development', path: '/customsoftware' },
-  { name: 'Mobile App Development', path: '/mobileapps' },
-  { name: 'Website Development', path: '/websites' },
-];
+const servicesRoutes = [...appRoutes[1].subRoutes];
 
 const Header = () => {
   const classes = useStyles();
@@ -69,59 +65,26 @@ const Header = () => {
 
   const [navChoice, setNavChoice] = useState(0);
   const [selectedSubMenuItem, setSelectedSubMenuItem] = useState(0);
+  const [secondLevelId, setSecondLevelId] = useState(0);
 
   // This ensures if the page is refreshed that the previously-selected
   // menu item remains selected.
   useEffect(() => {
-    switch (window.location.pathname) {
-      case '/':
-        if (navChoice !== 0) {
-          setNavChoice(0);
-        }
-        break;
-      case '/services':
-        if (navChoice !== 1) {
-          setNavChoice(1);
-          setSelectedSubMenuItem(0);
-        }
-        break;
-      case '/customsoftware':
-        if (navChoice !== 1) {
-          setNavChoice(1);
-          setSelectedSubMenuItem(1);
-        }
-        break;
-      case '/mobileapps':
-        if (navChoice !== 1) {
-          setNavChoice(1);
-          setSelectedSubMenuItem(2);
-        }
-        break;
-      case '/websites':
-        if (navChoice !== 1) {
-          setNavChoice(1);
-          setSelectedSubMenuItem(3);
-        }
-        break;
-      case 'revolution':
-        if (navChoice !== 2) {
-          setNavChoice(2);
-        }
-        break;
-      case '/about':
-        if (navChoice !== 3) {
-          setNavChoice(3);
-        }
-        break;
-      case '/contact':
-        if (navChoice !== 4) {
-          setNavChoice(4);
-        }
-        break;
-      default:
-        break;
-    }
-  }, [navChoice]);
+    [...appRoutes, ...servicesRoutes].forEach((route) => {
+      switch (window.location.pathname) {
+        case `${route.path}`:
+          if (navChoice !== route.topLevelId) {
+            setNavChoice(route.topLevelId);
+            if (route.secondLevelId && route.secondLevelId !== secondLevelId) {
+              setSecondLevelId(route.secondLevelId);
+            }
+          }
+          break;
+        default:
+          break;
+      }
+    });
+  }, [navChoice, secondLevelId]);
 
   const handleSetNavChoice = (choice) => {
     setNavChoice(choice);
@@ -144,7 +107,7 @@ const Header = () => {
               <DrawerMenu
                 navChoice={navChoice}
                 handleSetNavChoice={handleSetNavChoice}
-                servicesMenuItems={servicesMenuItems}
+                servicesRoutes={servicesRoutes}
               />
             ) : (
               <TabMenu
@@ -152,7 +115,7 @@ const Header = () => {
                 handleSetNavChoice={handleSetNavChoice}
                 selectedSubMenuItem={selectedSubMenuItem}
                 handleSetSelectedSubMenuItem={handleSetSelectedSubMenuItem}
-                servicesMenuItems={servicesMenuItems}
+                servicesRoutes={servicesRoutes}
               />
             )}
           </Toolbar>

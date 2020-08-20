@@ -46,7 +46,7 @@ const TabMenuBar = ({
   handleSetNavChoice,
   selectedSubMenuItem,
   handleSetSelectedSubMenuItem,
-  servicesMenuItems,
+  servicesRoutes,
 }) => {
   const classes = useStyles();
 
@@ -73,7 +73,7 @@ const TabMenuBar = ({
     handleSetSelectedSubMenuItem(i);
   };
 
-  function renderServicesSubMenu(menuItem, index) {
+  function renderServicesMenu(menuItem, index) {
     return (
       <MenuItem
         key={`${menuItem.name}_${index}`}
@@ -126,7 +126,7 @@ const TabMenuBar = ({
         MenuListProps={{ onMouseLeave: handleCloseClick }}
         elevation={0}
       >
-        {servicesMenuItems.map((menuItem, index) => renderServicesSubMenu(menuItem, index))}
+        {servicesRoutes.map((menuItem, index) => renderServicesMenu(menuItem, index))}
       </Menu>
     </>
   );
