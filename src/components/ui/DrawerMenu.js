@@ -27,34 +27,24 @@ const useStyles = makeStyles((theme) => ({
   drawerItem: {
     ...theme.typography.tab,
     color: 'white',
+    opacity: 0.7,
+  },
+  drawerItemSelected: {
+    opacity: 1,
   },
   drawerItemEstimate: {
     backgroundColor: theme.palette.common.orange,
   },
 }));
 
-const DrawerMenu = ({ navChoice, servicesMenuItems, setNavChoice }) => {
+// from the online docs - if not iOS, the drawer functions a bit weird so the component
+// uses a couple of props to enable good rendering
+const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+const DrawerMenu = ({ navChoice, handleSetNavChoice }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const classes = useStyles();
-
-  const handleSetNavChoice = (navChoice) => {
-    setNavChoice(navChoice);
-  };
-
-  // from the online docs - if not iOS, the drawer functions a bit weird so the component
-  // uses a couple of props to enable good rendering
-  const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
-
-  const renderServicesSubMenu = (menuItem, index) => {
-    return (
-      <ListItem component={Link}>
-        <ListItemText className={classes.drawerItem} disableTypography component={Link} to="/">
-          {menuItem.name}
-        </ListItemText>
-      </ListItem>
-    );
-  };
 
   return (
     <>
@@ -78,39 +68,102 @@ const DrawerMenu = ({ navChoice, servicesMenuItems, setNavChoice }) => {
             to="/"
             selected={navChoice === 0}
           >
-            <ListItemText className={classes.drawerItem} disableTypography>
+            <ListItemText
+              // dynamic application of classes to change the opacity of the item when it's been selected
+              className={navChoice === 0 ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem}
+              disableTypography
+            >
               Home
             </ListItemText>
           </ListItem>
-          <ListItem divider button onClick={() => setIsDrawerOpen(false)} component={Link} to="/services">
-            <ListItemText className={classes.drawerItem} disableTypography>
+          <ListItem
+            divider
+            button
+            onClick={() => {
+              setIsDrawerOpen(false);
+              handleSetNavChoice(1);
+            }}
+            component={Link}
+            to="/services"
+            selected={navChoice === 1}
+          >
+            <ListItemText
+              className={navChoice === 1 ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem}
+              disableTypography
+            >
               Services
             </ListItemText>
           </ListItem>
-          <ListItem divider button onClick={() => setIsDrawerOpen(false)} component={Link} to="/revolution">
-            <ListItemText className={classes.drawerItem} disableTypography>
+          <ListItem
+            divider
+            button
+            onClick={() => {
+              setIsDrawerOpen(false);
+              handleSetNavChoice(2);
+            }}
+            component={Link}
+            to="/revolution"
+            selected={navChoice === 2}
+          >
+            <ListItemText
+              className={navChoice === 2 ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem}
+              disableTypography
+            >
               The Revolution
             </ListItemText>
           </ListItem>
-          <ListItem divider button onClick={() => setIsDrawerOpen(false)} component={Link} to="/about">
-            <ListItemText className={classes.drawerItem} disableTypography>
+          <ListItem
+            divider
+            button
+            onClick={() => {
+              setIsDrawerOpen(false);
+              handleSetNavChoice(3);
+            }}
+            component={Link}
+            to="/about"
+            selected={navChoice === 3}
+          >
+            <ListItemText
+              className={navChoice === 3 ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem}
+              disableTypography
+            >
               About Us
             </ListItemText>
           </ListItem>
-          <ListItem divider button onClick={() => setIsDrawerOpen(false)} component={Link} to="/contact">
-            <ListItemText className={classes.drawerItem} disableTypography>
+          <ListItem
+            divider
+            button
+            onClick={() => {
+              setIsDrawerOpen(false);
+              handleSetNavChoice(4);
+            }}
+            component={Link}
+            to="/contact"
+            selected={navChoice === 4}
+          >
+            <ListItemText
+              className={navChoice === 4 ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem}
+              disableTypography
+            >
               Contact Us
             </ListItemText>
           </ListItem>
           <ListItem
             divider
             button
-            onClick={() => setIsDrawerOpen(false)}
+            onClick={() => {
+              setIsDrawerOpen(false);
+              handleSetNavChoice(5);
+            }}
             component={Link}
             to="/estimate"
             className={classes.drawerItemEstimate}
+            selected={navChoice === 5}
           >
-            <ListItemText className={classes.drawerItem} disableTypography>
+            <ListItemText
+              className={navChoice === 5 ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem}
+              disableTypography
+            >
               Free Estimate
             </ListItemText>
           </ListItem>

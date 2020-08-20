@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/styles';
@@ -43,20 +43,34 @@ const useStyles = makeStyles((theme) => ({
 
 const TabMenuBar = ({
   navChoice,
-  handleNavChange,
-  selectedNavChoice,
-  navMenuIsOpen,
-  handleCloseClick,
-  handleOpenClick,
-  handleMenuItemClick,
-  setNavChoice,
+  handleSetNavChoice,
   selectedSubMenuItem,
+  handleSetSelectedSubMenuItem,
   servicesMenuItems,
 }) => {
   const classes = useStyles();
 
-  const handleSetNavChoice = (navChoice) => {
-    setNavChoice(navChoice);
+  const [selectedNavChoice, setSelectedNavChoice] = useState(null);
+  const [navMenuIsOpen, setNavMenuIsOpen] = useState(false);
+
+  const handleNavChange = (e, value) => {
+    handleSetNavChoice(value);
+  };
+
+  const handleOpenClick = (e) => {
+    setSelectedNavChoice(e.currentTarget);
+    setNavMenuIsOpen(true);
+  };
+
+  const handleCloseClick = (e) => {
+    setSelectedNavChoice(null);
+    setNavMenuIsOpen(false);
+  };
+
+  const handleMenuItemClick = (e, i) => {
+    handleSetNavChoice(null);
+    setNavMenuIsOpen(false);
+    handleSetSelectedSubMenuItem(i);
   };
 
   function renderServicesSubMenu(menuItem, index) {

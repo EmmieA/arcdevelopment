@@ -61,15 +61,13 @@ const servicesMenuItems = [
   { name: 'Website Development', path: '/websites' },
 ];
 
-export default function Header(props) {
+const Header = () => {
   const classes = useStyles();
   const theme = useTheme(); // gives access to the theme within component code
 
   const viewportIsMediumOrLess = useMediaQuery(theme.breakpoints.down('md'));
 
   const [navChoice, setNavChoice] = useState(0);
-  const [selectedNavChoice, setSelectedNavChoice] = useState(null);
-  const [navMenuIsOpen, setNavMenuIsOpen] = useState(false);
   const [selectedSubMenuItem, setSelectedSubMenuItem] = useState(0);
 
   // This ensures if the page is refreshed that the previously-selected
@@ -125,24 +123,12 @@ export default function Header(props) {
     }
   }, [navChoice]);
 
-  const handleNavChange = (e, value) => {
-    setNavChoice(value);
+  const handleSetNavChoice = (choice) => {
+    setNavChoice(choice);
   };
 
-  const handleOpenClick = (e) => {
-    setSelectedNavChoice(e.currentTarget);
-    setNavMenuIsOpen(true);
-  };
-
-  const handleCloseClick = (e) => {
-    setSelectedNavChoice(null);
-    setNavMenuIsOpen(false);
-  };
-
-  const handleMenuItemClick = (e, i) => {
-    setNavChoice(null);
-    setNavMenuIsOpen(false);
-    setSelectedSubMenuItem(i);
+  const handleSetSelectedSubMenuItem = (choice) => {
+    setSelectedSubMenuItem(choice);
   };
 
   return (
@@ -155,18 +141,17 @@ export default function Header(props) {
             </Button>
 
             {viewportIsMediumOrLess ? (
-              <DrawerMenu navChoice={navChoice} servicesMenuItems={servicesMenuItems} />
+              <DrawerMenu
+                navChoice={navChoice}
+                handleSetNavChoice={handleSetNavChoice}
+                servicesMenuItems={servicesMenuItems}
+              />
             ) : (
               <TabMenu
                 navChoice={navChoice}
-                handleNavChange={handleNavChange}
-                selectedNavChoice={selectedNavChoice}
-                navMenuIsOpen={navMenuIsOpen}
-                handleCloseClick={handleCloseClick}
-                handleOpenClick={handleOpenClick}
-                handleMenuItemClick={handleMenuItemClick}
-                setNavChoice={setNavChoice}
+                handleSetNavChoice={handleSetNavChoice}
                 selectedSubMenuItem={selectedSubMenuItem}
+                handleSetSelectedSubMenuItem={handleSetSelectedSubMenuItem}
                 servicesMenuItems={servicesMenuItems}
               />
             )}
@@ -176,4 +161,6 @@ export default function Header(props) {
       <div className={classes.toolbarMargin} />
     </>
   );
-}
+};
+
+export default Header;
