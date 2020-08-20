@@ -50,12 +50,16 @@ const TabMenuBar = ({
   handleOpenClick,
   handleMenuItemClick,
   setNavChoice,
-  selectedMenuItem,
+  selectedSubMenuItem,
   servicesMenuItems,
 }) => {
   const classes = useStyles();
 
-  function renderMenuItem(menuItem, index) {
+  const handleSetNavChoice = (navChoice) => {
+    setNavChoice(navChoice);
+  };
+
+  function renderServicesSubMenu(menuItem, index) {
     return (
       <MenuItem
         key={`${menuItem.name}_${index}`}
@@ -65,10 +69,10 @@ const TabMenuBar = ({
         onClick={(event) => {
           handleMenuItemClick(event, index);
           handleCloseClick();
-          setNavChoice(1); // we know this is the Services nav item so set it explicitly
+          handleSetNavChoice(1); // we know this is the Services nav item so set it explicitly
         }}
         classes={{ root: classes.menuItem }}
-        selected={index === selectedMenuItem && selectedNavChoice === 1} // ensures it doesn't show as still selected after clicking on another top level nav item
+        selected={index === selectedSubMenuItem && selectedNavChoice === 1} // ensures it doesn't show as still selected after clicking on another top level nav item
       >
         {menuItem.name}
       </MenuItem>
@@ -93,7 +97,7 @@ const TabMenuBar = ({
         <Tab className={classes.tab} component={Link} to="/contact" label="Contact Us" />
       </Tabs>
 
-      <Button variant="contained" color="secondary" className={classes.freeEstimate}>
+      <Button variant="contained" color="secondary" className={classes.freeEstimate} component={Link} to="/estimate">
         Free Estimate
       </Button>
 
@@ -108,7 +112,7 @@ const TabMenuBar = ({
         MenuListProps={{ onMouseLeave: handleCloseClick }}
         elevation={0}
       >
-        {servicesMenuItems.map((menuItem, index) => renderMenuItem(menuItem, index))}
+        {servicesMenuItems.map((menuItem, index) => renderServicesSubMenu(menuItem, index))}
       </Menu>
     </>
   );

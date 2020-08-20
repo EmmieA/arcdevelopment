@@ -7,7 +7,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Button from '@material-ui/core/Button';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { theme } from '@material-ui/core/styles';
 
 import logo from '../../assets/logo.svg';
 import TabMenu from './TabMenu';
@@ -71,7 +70,7 @@ export default function Header(props) {
   const [navChoice, setNavChoice] = useState(0);
   const [selectedNavChoice, setSelectedNavChoice] = useState(null);
   const [navMenuIsOpen, setNavMenuIsOpen] = useState(false);
-  const [selectedMenuItem, setSelectedMenuItem] = useState(0);
+  const [selectedSubMenuItem, setSelectedSubMenuItem] = useState(0);
 
   // This ensures if the page is refreshed that the previously-selected
   // menu item remains selected.
@@ -85,25 +84,25 @@ export default function Header(props) {
       case '/services':
         if (navChoice !== 1) {
           setNavChoice(1);
-          setSelectedMenuItem(0);
+          setSelectedSubMenuItem(0);
         }
         break;
       case '/customsoftware':
         if (navChoice !== 1) {
           setNavChoice(1);
-          setSelectedMenuItem(1);
+          setSelectedSubMenuItem(1);
         }
         break;
       case '/mobileapps':
         if (navChoice !== 1) {
           setNavChoice(1);
-          setSelectedMenuItem(2);
+          setSelectedSubMenuItem(2);
         }
         break;
       case '/websites':
         if (navChoice !== 1) {
           setNavChoice(1);
-          setSelectedMenuItem(3);
+          setSelectedSubMenuItem(3);
         }
         break;
       case 'revolution':
@@ -143,7 +142,7 @@ export default function Header(props) {
   const handleMenuItemClick = (e, i) => {
     setNavChoice(null);
     setNavMenuIsOpen(false);
-    setSelectedMenuItem(i);
+    setSelectedSubMenuItem(i);
   };
 
   return (
@@ -156,10 +155,9 @@ export default function Header(props) {
             </Button>
 
             {viewportIsMediumOrLess ? (
-              <DrawerMenu />
+              <DrawerMenu navChoice={navChoice} servicesMenuItems={servicesMenuItems} />
             ) : (
               <TabMenu
-                classes={classes}
                 navChoice={navChoice}
                 handleNavChange={handleNavChange}
                 selectedNavChoice={selectedNavChoice}
@@ -168,7 +166,7 @@ export default function Header(props) {
                 handleOpenClick={handleOpenClick}
                 handleMenuItemClick={handleMenuItemClick}
                 setNavChoice={setNavChoice}
-                selectedMenuItem={selectedMenuItem}
+                selectedSubMenuItem={selectedSubMenuItem}
                 servicesMenuItems={servicesMenuItems}
               />
             )}
