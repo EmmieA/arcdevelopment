@@ -11,6 +11,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import logo from '../../assets/logo.svg';
 import TabMenu from './TabMenu';
 import DrawerMenu from './DrawerMenu';
+import appRoutes from '../../common/appRoutes';
 
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
@@ -54,20 +55,7 @@ function ElevationScroll(props) {
   });
 }
 
-const routes = [
-  { name: 'Home', path: '/', topLevelId: 0 },
-  { name: 'Services', path: '/services', topLevelId: 1 },
-  { name: 'The Revolution', path: '/revolution', topLevelId: 2 },
-  { name: 'About Us', path: '/about', topLevelId: 3 },
-  { name: 'Contact Us', path: '/contact', topLevelId: 4 },
-];
-
-const servicesMenuItems = [
-  { name: 'Services', path: '/services', topLevelId: 1, secondLevelId: 0 },
-  { name: 'Custom Software Development', path: '/customsoftware', topLevelId: 1, secondLevelId: 1 },
-  { name: 'Mobile App Development', path: '/mobileapps', topLevelId: 1, secondLevelId: 2 },
-  { name: 'Website Development', path: '/websites', topLevelId: 1, secondLevelId: 3 },
-];
+const servicesRoutes = [...appRoutes[1].subRoutes];
 
 const Header = () => {
   const classes = useStyles();
@@ -82,7 +70,7 @@ const Header = () => {
   // This ensures if the page is refreshed that the previously-selected
   // menu item remains selected.
   useEffect(() => {
-    [...routes, ...servicesMenuItems].forEach((route) => {
+    [...appRoutes, ...servicesRoutes].forEach((route) => {
       switch (window.location.pathname) {
         case `${route.path}`:
           if (navChoice !== route.topLevelId) {
@@ -119,7 +107,7 @@ const Header = () => {
               <DrawerMenu
                 navChoice={navChoice}
                 handleSetNavChoice={handleSetNavChoice}
-                servicesMenuItems={servicesMenuItems}
+                servicesRoutes={servicesRoutes}
               />
             ) : (
               <TabMenu
@@ -127,7 +115,7 @@ const Header = () => {
                 handleSetNavChoice={handleSetNavChoice}
                 selectedSubMenuItem={selectedSubMenuItem}
                 handleSetSelectedSubMenuItem={handleSetSelectedSubMenuItem}
-                servicesMenuItems={servicesMenuItems}
+                servicesRoutes={servicesRoutes}
               />
             )}
           </Toolbar>
