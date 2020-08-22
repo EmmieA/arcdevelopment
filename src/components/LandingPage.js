@@ -9,6 +9,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import animationData from '../animations/landinganimation/data';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg';
 import mobileAppsIcon from '../assets/mobileIcon.svg';
+import websitesIcon from '../assets/websiteIcon.svg';
 
 import ButtonArrow from './ui/Resources/ButtonArrow';
 
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: 0,
     },
   },
-  customSoftwareContainer: {
+  servicesContainer: {
     marginTop: '12em',
     [theme.breakpoints.down('sm')]: {
       marginTop: '4em',
@@ -150,7 +151,7 @@ const LandingPage = () => {
           container
           direction="row"
           justify={viewportIsSmallOrBelow ? 'center' : undefined}
-          className={classes.customSoftwareContainer}
+          className={classes.servicesContainer}
         >
           <Grid
             item
@@ -184,7 +185,7 @@ const LandingPage = () => {
           container
           direction="row"
           justify={viewportIsSmallOrBelow ? 'center' : 'flex-end'}
-          className={classes.customSoftwareContainer}
+          className={classes.servicesContainer}
         >
           <Grid
             item
@@ -207,6 +208,37 @@ const LandingPage = () => {
           </Grid>
           <Grid item style={{ marginLeft: viewportIsSmallOrBelow ? 0 : '5em' }}>
             <img className={classes.mobileAppsIcon} alt="mobile phone icon" src={mobileAppsIcon} />
+          </Grid>
+        </Grid>
+      </Grid>
+
+      {/* ----- WEBSITE DEV BLOCK ----- */}
+      <Grid item>
+        <Grid
+          container
+          direction="row"
+          justify={viewportIsSmallOrBelow ? 'center' : undefined}
+          className={classes.servicesContainer}
+        >
+          <Grid
+            item
+            style={{
+              marginLeft: viewportIsSmallOrBelow ? '1em' : '5em',
+              textAlign: viewportIsSmallOrBelow ? 'center' : undefined,
+            }}
+          >
+            <Typography variant="h4">Website Development</Typography>
+            <Typography variant="subtitle1" className={classes.subTitle}>
+              Reach more. Discover more. Sell more.
+            </Typography>
+            <Typography variant="subtitle1">Optimized for search engines. Built for speed.</Typography>
+            <Button variant="outlined" size="small" className={classes.learnButtonSecondary}>
+              <span style={{ marginRight: 10 }}>Learn More</span>
+              <ButtonArrow width={10} height={10} fill={theme.palette.common.blue}></ButtonArrow>
+            </Button>
+          </Grid>
+          <Grid item>
+            <img className={classes.softwareIcon} alt="website icon" src={websitesIcon} />
           </Grid>
         </Grid>
       </Grid>
