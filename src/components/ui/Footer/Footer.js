@@ -109,7 +109,7 @@ const Footer = ({ navChoice, handleSetNavChoice, selectedSubMenuItem, handleSetS
                 to="/mobileapps"
                 className={classes.link}
               >
-                Mobile App Development
+                iOS/Android App Development
               </Grid>
               <Grid
                 item

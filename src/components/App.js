@@ -8,6 +8,8 @@ import theme from '../common/Theme';
 import Header from '../components/ui/Header/Header';
 import Footer from '../components/ui/Footer/Footer';
 
+import LandingPage from './LandingPage';
+
 function App() {
   // Ideally I'd think all this navigation-related stuff should be in a navigation context file,
   // not here in App.js
@@ -32,7 +34,9 @@ function App() {
           handleSetSelectedSubMenuItem={handleSetSelectedSubMenuItem}
         />
         <Switch>
-          <Route exact path="/" component={() => <div style={{ height: '600px' }}>Home</div>} />
+          {/* example of how to pass in straight text */}
+          {/* <Route exact path="/" component={() => <div style={{ height: '600px' }}>Home</div>} /> */}
+          <Route exact path="/" component={LandingPage} />
           <Route exact path="/services" component={() => <div>Services</div>} />
           <Route exact path="/customsoftware" component={() => <div>Custom Software</div>} />
           <Route exact path="/mobileapps" component={() => <div>Mobile Apps</div>} />
