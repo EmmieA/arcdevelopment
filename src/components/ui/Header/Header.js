@@ -40,6 +40,10 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'transparent',
     },
   },
+  header: {
+    // Ensures nothing can cover it up, including the drawer menu when swiped out from the side
+    zIndex: theme.zIndex.modal + 1,
+  },
 }));
 
 function ElevationScroll(props) {
@@ -57,14 +61,12 @@ function ElevationScroll(props) {
 
 const servicesRoutes = [...appRoutes[1].subRoutes];
 
-const Header = () => {
+const Header = ({ navChoice, handleSetNavChoice, selectedSubMenuItem, handleSetSelectedSubMenuItem }) => {
   const classes = useStyles();
   const theme = useTheme(); // gives access to the theme within component code
 
   const viewportIsMediumOrLess = useMediaQuery(theme.breakpoints.down('md'));
 
-  const [navChoice, setNavChoice] = useState(0);
-  const [selectedSubMenuItem, setSelectedSubMenuItem] = useState(0);
   const [secondLevelId, setSecondLevelId] = useState(0);
 
   // This ensures if the page is refreshed that the previously-selected
@@ -74,7 +76,7 @@ const Header = () => {
       switch (window.location.pathname) {
         case `${route.path}`:
           if (navChoice !== route.topLevelId) {
-            setNavChoice(route.topLevelId);
+            handleSetNavChoice(route.topLevelId);
             if (route.secondLevelId && route.secondLevelId !== secondLevelId) {
               setSecondLevelId(route.secondLevelId);
             }
@@ -84,22 +86,20 @@ const Header = () => {
           break;
       }
     });
-  }, [navChoice, secondLevelId]);
-
-  const handleSetNavChoice = (choice) => {
-    setNavChoice(choice);
-  };
-
-  const handleSetSelectedSubMenuItem = (choice) => {
-    setSelectedSubMenuItem(choice);
-  };
+  }, [navChoice, secondLevelId, handleSetNavChoice]);
 
   return (
     <>
       <ElevationScroll>
-        <AppBar position="fixed">
+        <AppBar position="fixed" className={classes.header}>
           <Toolbar disableGutters>
-            <Button component={Link} to="/" onClick={() => setNavChoice(0)} className={classes.logoLink} disableRipple>
+            <Button
+              component={Link}
+              to="/"
+              onClick={() => handleSetNavChoice(0)}
+              className={classes.logoLink}
+              disableRipple
+            >
               <img alt="Company logo" className={classes.logo} src={logo} />
             </Button>
 

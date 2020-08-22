@@ -11,6 +11,17 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 const useStyles = makeStyles((theme) => ({
+  // this class is duplicated in Header.js and should be centralized somewhere
+  toolbarMargin: {
+    ...theme.mixins.toolbar,
+    marginBottom: '3em',
+    [theme.breakpoints.down('md')]: {
+      marginBottom: '2em',
+    },
+    [theme.breakpoints.down('xs')]: {
+      marginBottom: '1.5em',
+    },
+  },
   drawerIconContainer: {
     marginLeft: 'auto',
     '&:hover': {
@@ -30,7 +41,9 @@ const useStyles = makeStyles((theme) => ({
     opacity: 0.7,
   },
   drawerItemSelected: {
-    opacity: 1,
+    '& .MuiListItemText-Root': {
+      opacity: 1,
+    },
   },
   drawerItemEstimate: {
     backgroundColor: theme.palette.common.orange,
@@ -56,6 +69,7 @@ const MenuDrawer = ({ navChoice, handleSetNavChoice }) => {
         onOpen={() => setIsDrawerOpen(true)}
         classes={{ paper: classes.drawer }}
       >
+        <div className={classes.toolbarMargin} />
         <List disablePadding>
           <ListItem
             divider
@@ -67,10 +81,11 @@ const MenuDrawer = ({ navChoice, handleSetNavChoice }) => {
             component={Link}
             to="/"
             selected={navChoice === 0}
+            classes={{ selected: classes.drawerItemSelected }}
           >
             <ListItemText
               // dynamic application of classes to change the opacity of the item when it's been selected
-              className={navChoice === 0 ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem}
+              className={classes.drawerItem}
               disableTypography
             >
               Home
@@ -87,10 +102,7 @@ const MenuDrawer = ({ navChoice, handleSetNavChoice }) => {
             to="/services"
             selected={navChoice === 1}
           >
-            <ListItemText
-              className={navChoice === 1 ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem}
-              disableTypography
-            >
+            <ListItemText className={classes.drawerItem} disableTypography>
               Services
             </ListItemText>
           </ListItem>
@@ -105,10 +117,7 @@ const MenuDrawer = ({ navChoice, handleSetNavChoice }) => {
             to="/revolution"
             selected={navChoice === 2}
           >
-            <ListItemText
-              className={navChoice === 2 ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem}
-              disableTypography
-            >
+            <ListItemText className={classes.drawerItem} disableTypography>
               The Revolution
             </ListItemText>
           </ListItem>
@@ -123,10 +132,7 @@ const MenuDrawer = ({ navChoice, handleSetNavChoice }) => {
             to="/about"
             selected={navChoice === 3}
           >
-            <ListItemText
-              className={navChoice === 3 ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem}
-              disableTypography
-            >
+            <ListItemText className={classes.drawerItem} disableTypography>
               About Us
             </ListItemText>
           </ListItem>
@@ -141,10 +147,7 @@ const MenuDrawer = ({ navChoice, handleSetNavChoice }) => {
             to="/contact"
             selected={navChoice === 4}
           >
-            <ListItemText
-              className={navChoice === 4 ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem}
-              disableTypography
-            >
+            <ListItemText className={classes.drawerItem} disableTypography>
               Contact Us
             </ListItemText>
           </ListItem>
@@ -159,11 +162,9 @@ const MenuDrawer = ({ navChoice, handleSetNavChoice }) => {
             to="/estimate"
             className={classes.drawerItemEstimate}
             selected={navChoice === 5}
+            classes={{ root: classes.drawerItemEstimate, selected: classes.drawerItemSelected }}
           >
-            <ListItemText
-              className={navChoice === 5 ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem}
-              disableTypography
-            >
+            <ListItemText className={classes.drawerItem} disableTypography>
               Free Estimate
             </ListItemText>
           </ListItem>
