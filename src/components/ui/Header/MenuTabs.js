@@ -38,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '25px',
     borderRadius: '50px',
     height: '45px',
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.light,
+    },
   },
 }));
 
