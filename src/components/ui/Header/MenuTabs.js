@@ -86,7 +86,7 @@ const MenuTabs = ({
           handleSetNavChoice(1); // we know this is the Services nav item so set it explicitly
         }}
         classes={{ root: classes.menuItem }}
-        selected={index === selectedSubMenuItem && selectedNavChoice === 1} // ensures it doesn't show as still selected after clicking on another top level nav item
+        selected={index === selectedSubMenuItem && navChoice === 1} // ensures it doesn't show as still selected after clicking on another top level nav item
       >
         {menuItem.name}
       </MenuItem>
