@@ -7,7 +7,7 @@ const appRoutes = [
     subRoutes: [
       { name: 'Services', path: '/services', topLevelId: 1, secondLevelId: 0 },
       { name: 'Custom Software Development', path: '/customsoftware', topLevelId: 1, secondLevelId: 1 },
-      { name: 'Mobile App Development', path: '/mobileapps', topLevelId: 1, secondLevelId: 2 },
+      { name: 'iOS/Android App Development', path: '/mobileapps', topLevelId: 1, secondLevelId: 2 },
       { name: 'Website Development', path: '/websites', topLevelId: 1, secondLevelId: 3 },
     ],
   },

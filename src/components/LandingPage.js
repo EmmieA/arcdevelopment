@@ -8,6 +8,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import animationData from '../animations/landinganimation/data';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg';
+import mobileAppsIcon from '../assets/mobileIcon.svg';
 
 import ButtonArrow from './ui/Resources/ButtonArrow';
 
@@ -31,10 +32,10 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: 0,
     },
   },
-  serviceContainer: {
+  customSoftwareContainer: {
     marginTop: '12em',
     [theme.breakpoints.down('sm')]: {
-      marginTop: '6em',
+      marginTop: '4em',
       padding: 25,
     },
   },
@@ -89,6 +90,12 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: 0,
     },
   },
+  mobileAppsIcon: {
+    marginRight: '3em',
+    [theme.breakpoints.down('xs')]: {
+      marginRight: '1em',
+    },
+  },
 }));
 
 const LandingPage = () => {
@@ -137,13 +144,13 @@ const LandingPage = () => {
         </Grid>
       </Grid>
 
-      {/* ----- SERVICES BLOCK ----- */}
+      {/* ----- CUSTOM SOFTWARE BLOCK ----- */}
       <Grid item>
         <Grid
           container
           direction="row"
           justify={viewportIsSmallOrBelow ? 'center' : undefined}
-          className={classes.serviceContainer}
+          className={classes.customSoftwareContainer}
         >
           <Grid
             item
@@ -167,6 +174,39 @@ const LandingPage = () => {
           </Grid>
           <Grid item>
             <img className={classes.softwareIcon} alt="custom software icon" src={customSoftwareIcon} />
+          </Grid>
+        </Grid>
+      </Grid>
+
+      {/* ----- IOS/ANDROID BLOCK ----- */}
+      <Grid item>
+        <Grid
+          container
+          direction="row"
+          justify={viewportIsSmallOrBelow ? 'center' : 'flex-end'}
+          className={classes.customSoftwareContainer}
+        >
+          <Grid
+            item
+            style={{
+              textAlign: viewportIsSmallOrBelow ? 'center' : undefined,
+            }}
+          >
+            <Typography variant="h4">iOS/Android App Development</Typography>
+            <Typography variant="subtitle1" className={classes.subTitle}>
+              Extend functionality. Extend access. Increase Engagement.
+            </Typography>
+            <Typography variant="subtitle1">
+              Integrate your web experience or create a standalone app{viewportIsSmallOrBelow ? null : <br />} with
+              either mobile platform.
+            </Typography>
+            <Button variant="outlined" size="small" className={classes.learnButtonSecondary}>
+              <span style={{ marginRight: 10 }}>Learn More</span>
+              <ButtonArrow width={10} height={10} fill={theme.palette.common.blue}></ButtonArrow>
+            </Button>
+          </Grid>
+          <Grid item style={{ marginLeft: viewportIsSmallOrBelow ? 0 : '5em' }}>
+            <img className={classes.mobileAppsIcon} alt="mobile phone icon" src={mobileAppsIcon} />
           </Grid>
         </Grid>
       </Grid>
