@@ -125,6 +125,8 @@ const MenuTabs = ({
         classes={{ paper: classes.menu }}
         MenuListProps={{ onMouseLeave: handleCloseClick }}
         elevation={0}
+        style={{ zIndex: 1302 }}
+        keepMounted // for search engine optimization - always in the DOM regardless of visibility
       >
         {servicesRoutes.map((menuItem, index) => renderServicesMenu(menuItem, index))}
       </Menu>

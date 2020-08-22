@@ -40,6 +40,10 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'transparent',
     },
   },
+  header: {
+    // Ensures nothing can cover it up, including the drawer menu when swiped out from the side
+    zIndex: theme.zIndex.modal + 1,
+  },
 }));
 
 function ElevationScroll(props) {
@@ -97,7 +101,7 @@ const Header = () => {
   return (
     <>
       <ElevationScroll>
-        <AppBar position="fixed">
+        <AppBar position="fixed" className={classes.header}>
           <Toolbar disableGutters>
             <Button component={Link} to="/" onClick={() => setNavChoice(0)} className={classes.logoLink} disableRipple>
               <img alt="Company logo" className={classes.logo} src={logo} />
