@@ -4,8 +4,11 @@ import Lottie from 'react-lottie';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Grid, Button, Typography } from '@material-ui/core';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import animationData from '../animations/landinganimation/data';
+import customSoftwareIcon from '../assets/Custom Software Icon.svg';
+
 import ButtonArrow from './ui/Resources/ButtonArrow';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +29,13 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '1em',
     [theme.breakpoints.down('xs')]: {
       marginLeft: 0,
+    },
+  },
+  serviceContainer: {
+    marginTop: '12em',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '6em',
+      padding: 25,
     },
   },
   handAnimation: {
@@ -51,23 +61,40 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.secondary.light,
     },
   },
-  learnButton: {
-    borderColor: theme.palette.common.blue,
-    color: theme.palette.common.blue,
-    borderRadius: 50,
-    borderWidth: 2,
-    textTransform: 'none',
-    fontFamily: 'Roboto',
-    fontWeight: 'bold',
+  learnButtonHero: {
+    ...theme.typography.learnButton,
     fontSize: '0.9rem',
     height: 45,
     width: 145,
+  },
+  learnButtonSecondary: {
+    ...theme.typography.learnButton,
+    fontSize: '0.7rem',
+    height: 35,
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: '2em',
+    },
+  },
+  specialText: {
+    fontFamily: 'Pacifico',
+    color: theme.palette.common.orange,
+  },
+  subTitle: {
+    marginBottom: '1em',
+  },
+  softwareIcon: {
+    marginLeft: '2em',
+    // handle stacking when screen is sized down
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: 0,
+    },
   },
 }));
 
 const LandingPage = () => {
   const classes = useStyles();
   const theme = useTheme();
+  const viewportIsSmallOrBelow = useMediaQuery(theme.breakpoints.down('sm'));
 
   const defaultAnimationOptions = {
     loop: true,
@@ -80,6 +107,7 @@ const LandingPage = () => {
 
   return (
     <Grid container direction="column" className={classes.mainContainer}>
+      {/* ----- HERO BLOCK ----- */}
       <Grid item>
         <Grid container direction="row" justify="flex-end" alignItems="center">
           {/* Adding "sm" is how to specify "once the screen size hits small (or less), this should occupy its own row" */}
@@ -96,7 +124,7 @@ const LandingPage = () => {
                 </Button>
               </Grid>
               <Grid item>
-                <Button variant="outlined" className={classes.learnButton}>
+                <Button variant="outlined" className={classes.learnButtonHero}>
                   <span style={{ marginRight: 10 }}>Learn More</span>
                   <ButtonArrow width={15} height={15} fill={theme.palette.common.blue}></ButtonArrow>
                 </Button>
@@ -105,6 +133,40 @@ const LandingPage = () => {
           </Grid>
           <Grid item sm className={classes.handAnimation}>
             <Lottie options={defaultAnimationOptions} height={'100%'} width={'100%'} />
+          </Grid>
+        </Grid>
+      </Grid>
+
+      {/* ----- SERVICES BLOCK ----- */}
+      <Grid item>
+        <Grid
+          container
+          direction="row"
+          justify={viewportIsSmallOrBelow ? 'center' : undefined}
+          className={classes.serviceContainer}
+        >
+          <Grid
+            item
+            style={{
+              marginLeft: viewportIsSmallOrBelow ? '1em' : '5em',
+              textAlign: viewportIsSmallOrBelow ? 'center' : undefined,
+            }}
+          >
+            <Typography variant="h4">Custom Software Development</Typography>
+            <Typography variant="subtitle1" className={classes.subTitle}>
+              Save energy. Save time. Save money.
+            </Typography>
+            <Typography variant="subtitle1">
+              Complete digital solutions, from investigation to <span className={classes.specialText}>celebration</span>
+              .
+            </Typography>
+            <Button variant="outlined" size="small" className={classes.learnButtonSecondary}>
+              <span style={{ marginRight: 10 }}>Learn More</span>
+              <ButtonArrow width={10} height={10} fill={theme.palette.common.blue}></ButtonArrow>
+            </Button>
+          </Grid>
+          <Grid item>
+            <img className={classes.softwareIcon} alt="custom software icon" src={customSoftwareIcon} />
           </Grid>
         </Grid>
       </Grid>
