@@ -364,10 +364,9 @@ const LandingPage = () => {
             container
             direction={viewportIsXs ? 'column' : 'row'}
             style={{ position: 'absolute', textAlign: viewportIsXs ? 'center' : 'inherit' }}
-            spacing={viewportIsXs ? 8 : 0}
           >
             <Grid item sm style={{ marginLeft: viewportIsXs ? 0 : viewportIsSmallOrBelow ? '2em' : '5em' }}>
-              <Grid container direction="column">
+              <Grid container direction="column" style={{ marginBottom: viewportIsXs ? '5em' : 0 }}>
                 <Typography variant="h2" style={{ color: 'white' }}>
                   About Us
                 </Typography>
