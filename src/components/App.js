@@ -5,7 +5,8 @@ import { ThemeProvider } from '@material-ui/styles';
 
 import theme from '../common/Theme';
 
-import RouteContextProvider from './Contexts/RouteContext';
+import RouteContextProvider from '../Contexts/RouteContext';
+import ViewportContextProvider from '../Contexts/ViewportContext';
 
 import Header from '../components/ui/Header/Header';
 import Footer from '../components/ui/Footer/Footer';
@@ -13,19 +14,17 @@ import Footer from '../components/ui/Footer/Footer';
 import LandingPage from './LandingPage';
 
 function App() {
-  // Ideally I'd think all this navigation-related stuff should be in a navigation context file,
-  // not here in App.js
-
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <RouteContextProvider>
-          <Header />
-          <Switch>
-            {/* example of how to pass in straight text */}
-            {/* <Route exact path="/" component={() => <div style={{ height: '600px' }}>Home</div>} /> */}
-            <Route exact path="/" component={LandingPage} />
-            {/* 
+          <ViewportContextProvider>
+            <Header />
+            <Switch>
+              {/* example of how to pass in straight text */}
+              {/* <Route exact path="/" component={() => <div style={{ height: '600px' }}>Home</div>} /> */}
+              <Route exact path="/" component={LandingPage} />
+              {/* 
               You can't use the component prop if you want to pass props along with the component
               You have to use render={(props) => <LandingPage
                                                         {...props}
@@ -34,16 +33,17 @@ function App() {
                                                   />
                                       }
              */}
-            <Route exact path="/services" component={() => <div>Services</div>} />
-            <Route exact path="/customsoftware" component={() => <div>Custom Software</div>} />
-            <Route exact path="/mobileapps" component={() => <div>Mobile Apps</div>} />
-            <Route exact path="/websites" component={() => <div>Websites</div>} />
-            <Route exact path="/revolution" component={() => <div>The Revolution</div>} />
-            <Route exact path="/about" component={() => <div>About Us</div>} />
-            <Route exact path="/contact" component={() => <div>Contact Us</div>} />
-            <Route exact path="/estimate" component={() => <div>Estimate</div>} />
-          </Switch>
-          <Footer />
+              <Route exact path="/services" component={() => <div>Services</div>} />
+              <Route exact path="/customsoftware" component={() => <div>Custom Software</div>} />
+              <Route exact path="/mobileapps" component={() => <div>Mobile Apps</div>} />
+              <Route exact path="/websites" component={() => <div>Websites</div>} />
+              <Route exact path="/revolution" component={() => <div>The Revolution</div>} />
+              <Route exact path="/about" component={() => <div>About Us</div>} />
+              <Route exact path="/contact" component={() => <div>Contact Us</div>} />
+              <Route exact path="/estimate" component={() => <div>Estimate</div>} />
+            </Switch>
+            <Footer />
+          </ViewportContextProvider>
         </RouteContextProvider>
       </BrowserRouter>
     </ThemeProvider>

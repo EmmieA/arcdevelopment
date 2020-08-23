@@ -8,7 +8,7 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Button from '@material-ui/core/Button';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-import { RouteContext } from '../../Contexts/RouteContext';
+import { RouteContext } from '../../../Contexts/RouteContext';
 
 import logo from '../../../assets/logo.svg';
 import MenuTabs from './MenuTabs';
