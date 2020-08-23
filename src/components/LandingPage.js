@@ -1,12 +1,11 @@
-/* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
 import Lottie from 'react-lottie';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Grid, Button, Typography, Card, CardContent } from '@material-ui/core';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-import { RouteContext } from '../components/Contexts/RouteContext';
+import { RouteContext } from '../Contexts/RouteContext';
+import { ViewportContext } from '../Contexts/ViewportContext';
 
 import animationData from '../animations/landinganimation/data';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg';
@@ -137,10 +136,10 @@ const useStyles = makeStyles((theme) => ({
 
 const LandingPage = () => {
   const { handleSetNavChoice, handleSetSelectedSubMenuItem } = useContext(RouteContext);
+  const { viewportIsSmallOrBelow, viewportIsXs } = useContext(ViewportContext);
+
   const classes = useStyles();
   const theme = useTheme();
-  const viewportIsSmallOrBelow = useMediaQuery(theme.breakpoints.down('sm'));
-  const viewportIsXs = useMediaQuery(theme.breakpoints.down('xs'));
 
   const defaultAnimationOptions = {
     loop: true,

@@ -1,15 +1,14 @@
-/* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { RouteContext } from '../../Contexts/RouteContext';
+import { RouteContext } from '../../../Contexts/RouteContext';
+import { ViewportContext } from '../../../Contexts/ViewportContext';
 
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import ButtonArrow from '../../Shared/ButtonArrow';
 import background from '../../../assets/background.jpg';
@@ -58,11 +57,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CallToAction = () => {
-  const { handleSetNavChoice, handleSetSelectedSubMenuItem } = useContext(RouteContext);
+  const { handleSetNavChoice } = useContext(RouteContext);
+  const { viewportIsSmallOrBelow } = useContext(ViewportContext);
   const classes = useStyles();
   const theme = useTheme();
-
-  const viewportIsSmallOrBelow = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <Grid
