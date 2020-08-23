@@ -15,7 +15,7 @@ import websitesIcon from '../assets/websiteIcon.svg';
 import revolutionBackground from '../assets/repeatingBackground.svg';
 import infoBackground from '../assets/infoBackground.svg';
 
-import ButtonArrow from './ui/Resources/ButtonArrow';
+import ButtonArrow from '../components/Shared/ButtonArrow';
 import CallToAction from './ui/CallToAction/CallToAction';
 import { Link } from 'react-router-dom';
 
