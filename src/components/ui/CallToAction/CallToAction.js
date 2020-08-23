@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-import ButtonArrow from '../Resources/ButtonArrow';
+import ButtonArrow from '../../Shared/ButtonArrow';
 import background from '../../../assets/background.jpg';
 import mobileBackground from '../../../assets/mobileBackground.jpg';
 
