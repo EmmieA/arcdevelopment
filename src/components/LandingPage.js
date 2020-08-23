@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+
 import Lottie from 'react-lottie';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -16,7 +18,6 @@ import infoBackground from '../assets/infoBackground.svg';
 
 import ButtonArrow from '../components/Shared/ButtonArrow';
 import CallToAction from './ui/CallToAction/CallToAction';
-import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
