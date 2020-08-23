@@ -114,7 +114,14 @@ const MenuTabs = ({
         <Tab className={classes.tab} component={Link} to="/contact" label="Contact Us" />
       </Tabs>
 
-      <Button variant="contained" color="secondary" className={classes.freeEstimate} component={Link} to="/estimate">
+      <Button
+        variant="contained"
+        color="secondary"
+        component={Link}
+        to="/estimate"
+        className={classes.freeEstimate}
+        onClick={() => handleSetNavChoice(5)} // choice doesn't really exist so it will cause none of the menu items to be highlisted
+      >
         Free Estimate
       </Button>
 

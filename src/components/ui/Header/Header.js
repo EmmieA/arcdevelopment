@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { makeStyles, useTheme } from '@material-ui/styles';
@@ -7,6 +7,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Button from '@material-ui/core/Button';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+
+import { RouteContext } from '../../Contexts/RouteContext';
 
 import logo from '../../../assets/logo.svg';
 import MenuTabs from './MenuTabs';
@@ -61,7 +63,8 @@ function ElevationScroll(props) {
 
 const servicesRoutes = [...appRoutes[1].subRoutes];
 
-const Header = ({ navChoice, handleSetNavChoice, selectedSubMenuItem, handleSetSelectedSubMenuItem }) => {
+const Header = () => {
+  const { navChoice, handleSetNavChoice, selectedSubMenuItem, handleSetSelectedSubMenuItem } = useContext(RouteContext);
   const classes = useStyles();
   const theme = useTheme(); // gives access to the theme within component code
 
@@ -81,6 +84,9 @@ const Header = ({ navChoice, handleSetNavChoice, selectedSubMenuItem, handleSetS
               setSecondLevelId(route.secondLevelId);
             }
           }
+          break;
+        case '/estimate':
+          handleSetNavChoice(5);
           break;
         default:
           break;
