@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useContext } from 'react';
 import Lottie from 'react-lottie';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Grid, Button, Typography, Card, CardContent } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+
+import { RouteContext } from '../components/Contexts/RouteContext';
 
 import animationData from '../animations/landinganimation/data';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg';
@@ -14,6 +16,8 @@ import revolutionBackground from '../assets/repeatingBackground.svg';
 import infoBackground from '../assets/infoBackground.svg';
 
 import ButtonArrow from './ui/Resources/ButtonArrow';
+import CallToAction from './ui/CallToAction/CallToAction';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -132,6 +136,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LandingPage = () => {
+  const { handleSetNavChoice, handleSetSelectedSubMenuItem } = useContext(RouteContext);
   const classes = useStyles();
   const theme = useTheme();
   const viewportIsSmallOrBelow = useMediaQuery(theme.breakpoints.down('sm'));
@@ -160,12 +165,24 @@ const LandingPage = () => {
             </Typography>
             <Grid container justify="center" className={classes.buttonContainer}>
               <Grid item>
-                <Button variant="contained" className={classes.estimateButton}>
+                <Button
+                  component={Link}
+                  to="/estimate"
+                  onClick={() => handleSetNavChoice(5)}
+                  variant="contained"
+                  className={classes.estimateButton}
+                >
                   Free Estimate
                 </Button>
               </Grid>
               <Grid item>
-                <Button variant="outlined" className={classes.learnButtonHero}>
+                <Button
+                  component={Link}
+                  to="/revolution"
+                  onClick={() => handleSetNavChoice(2)}
+                  variant="outlined"
+                  className={classes.learnButtonHero}
+                >
                   <span style={{ marginRight: 10 }}>Learn More</span>
                   <ButtonArrow width={15} height={15} fill={theme.palette.common.blue}></ButtonArrow>
                 </Button>
@@ -201,7 +218,17 @@ const LandingPage = () => {
               Complete digital solutions, from investigation to <span className={classes.specialText}>celebration</span>
               .
             </Typography>
-            <Button variant="outlined" size="small" className={classes.learnButtonSecondary}>
+            <Button
+              component={Link}
+              to="/customsoftware"
+              onClick={() => {
+                handleSetNavChoice(5);
+                handleSetSelectedSubMenuItem(1);
+              }}
+              variant="outlined"
+              size="small"
+              className={classes.learnButtonSecondary}
+            >
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow width={10} height={10} fill={theme.palette.common.blue}></ButtonArrow>
             </Button>
@@ -234,7 +261,17 @@ const LandingPage = () => {
               Integrate your web experience or create a standalone app{viewportIsSmallOrBelow ? null : <br />} with
               either mobile platform.
             </Typography>
-            <Button variant="outlined" size="small" className={classes.learnButtonSecondary}>
+            <Button
+              component={Link}
+              to="/mobileapps"
+              onClick={() => {
+                handleSetNavChoice(5);
+                handleSetSelectedSubMenuItem(2);
+              }}
+              variant="outlined"
+              size="small"
+              className={classes.learnButtonSecondary}
+            >
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow width={10} height={10} fill={theme.palette.common.blue}></ButtonArrow>
             </Button>
@@ -265,7 +302,17 @@ const LandingPage = () => {
               Reach more. Discover more. Sell more.
             </Typography>
             <Typography variant="subtitle1">Optimized for search engines. Built for speed.</Typography>
-            <Button variant="outlined" size="small" className={classes.learnButtonSecondary}>
+            <Button
+              component={Link}
+              to="/websites"
+              onClick={() => {
+                handleSetNavChoice(1);
+                handleSetSelectedSubMenuItem(3);
+              }}
+              variant="outlined"
+              size="small"
+              className={classes.learnButtonSecondary}
+            >
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow width={10} height={10} fill={theme.palette.common.blue}></ButtonArrow>
             </Button>
@@ -291,7 +338,13 @@ const LandingPage = () => {
                   <Typography variant="subtitle1">
                     Visionary insights coupled with cutting-edge technology is a recipe for revolution
                   </Typography>
-                  <Button variant="outlined" className={classes.learnButtonHero}>
+                  <Button
+                    component={Link}
+                    to="/revolution"
+                    onClick={() => handleSetNavChoice(2)}
+                    variant="outlined"
+                    className={classes.learnButtonHero}
+                  >
                     <span style={{ marginRight: 10 }}>Learn More</span>
                     <ButtonArrow width={15} height={15} fill={theme.palette.common.blue}></ButtonArrow>
                   </Button>
@@ -321,6 +374,9 @@ const LandingPage = () => {
                 <Typography variant="subtitle2">Let's get personal.</Typography>
                 <Grid item>
                   <Button
+                    component={Link}
+                    to="/contact"
+                    onClick={() => handleSetNavChoice(4)}
                     variant="outlined"
                     size="small"
                     className={classes.learnButtonSecondary}
@@ -348,6 +404,9 @@ const LandingPage = () => {
                 <Typography variant="subtitle2">Say hello!</Typography>
                 <Grid item>
                   <Button
+                    component={Link}
+                    to="/contact"
+                    onClick={() => handleSetNavChoice(2)}
                     variant="outlined"
                     size="small"
                     className={classes.learnButtonSecondary}
@@ -363,6 +422,11 @@ const LandingPage = () => {
 
           <div className={classes.infoBackground} />
         </Grid>
+      </Grid>
+
+      {/* ----- CALL TO ACTION ----- */}
+      <Grid item>
+        <CallToAction />
       </Grid>
     </Grid>
   );

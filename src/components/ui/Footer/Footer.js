@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+
+import { RouteContext } from '../../Contexts/RouteContext';
 
 import { makeStyles } from '@material-ui/styles';
 import Grid from '@material-ui/core/Grid';
@@ -58,7 +60,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Footer = ({ navChoice, handleSetNavChoice, selectedSubMenuItem, handleSetSelectedSubMenuItem }) => {
+const Footer = () => {
+  const { handleSetNavChoice, handleSetSelectedSubMenuItem } = useContext(RouteContext);
   const classes = useStyles();
 
   return (
