@@ -8,14 +8,16 @@ export const ViewportContext = createContext();
 const ViewportContextProvider = (props) => {
   const theme = useTheme();
 
-  const viewportIsSmallOrBelow = useMediaQuery(theme.breakpoints.down('sm'));
   const viewportIsXs = useMediaQuery(theme.breakpoints.down('xs'));
+  const viewportIsSmallOrBelow = useMediaQuery(theme.breakpoints.down('sm'));
+  const viewportIsMediumOrBelow = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <ViewportContext.Provider
       value={{
         viewportIsXs,
         viewportIsSmallOrBelow,
+        viewportIsMediumOrBelow,
       }}
     >
       {props.children}
