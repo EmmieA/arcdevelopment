@@ -4,7 +4,7 @@ const arcBlue = '#0b72b9';
 const arcOrange = '#ffba60';
 const arcGray = '#868686';
 
-export default createMuiTheme({
+const theme = createMuiTheme({
   palette: {
     common: {
       blue: arcBlue,
@@ -19,53 +19,61 @@ export default createMuiTheme({
   },
   typography: {
     tab: {
+      color: 'white',
       fontFamily: 'Raleway',
-      textTransform: 'none',
-      fontWeight: '700',
       fontSize: '1rem',
+      fontWeight: '700',
+      textTransform: 'none',
     },
     estimate: {
-      fontFamily: 'Pacifico',
-      textTransform: 'none',
-      fontSize: '1rem',
       color: 'white',
+      fontFamily: 'Pacifico',
+      fontSize: '1rem',
+      textTransform: 'none',
     },
     h2: {
-      fontFamily: 'Raleway',
-      fontWeight: 700,
-      fontSize: '2.5rem',
       color: arcBlue,
+      fontFamily: 'Raleway',
+      fontSize: '2.5rem',
+      fontWeight: 700,
       lineHeight: 1.3,
     },
     h3: {
+      color: arcBlue,
       fontFamily: 'Pacifico',
       fontSize: '2.5rem',
-      color: arcBlue,
     },
     h4: {
+      color: arcBlue,
       fontFamily: 'Raleway',
       fontSize: '1.75rem',
-      color: arcBlue,
       fontWeight: 700,
     },
     subtitle1: {
+      color: arcGray,
       fontSize: '1.25rem',
       fontWeight: 400,
-      color: arcGray,
     },
     subtitle2: {
       color: 'white',
       fontSize: '1.25rem',
       fontWeight: 400,
     },
+    body1: {
+      color: arcGray,
+      fontSize: '1.25rem',
+      fontWeight: 400,
+    },
     learnButton: {
-      borderColor: arcBlue,
       color: arcBlue,
+      fontFamily: 'Roboto',
+      fontWeight: 'bold',
+      borderColor: arcBlue,
       borderRadius: 50,
       borderWidth: 2,
       textTransform: 'none',
-      fontFamily: 'Roboto',
-      fontWeight: 'bold',
     },
   },
 });
+
+export default theme;
