@@ -45,8 +45,8 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '5em',
     paddingRight: '5em',
   },
-  textContainer: {
-    maxWidth: '30em',
+  textContainerMax40: {
+    maxWidth: '40em',
   },
   arrowContainer: {
     marginTop: '0.3em',
@@ -113,7 +113,7 @@ const CustomSoftware = () => {
               </IconButton>
             </Grid>
           </Hidden>
-          <Grid item container direction="column" className={classes.textContainer}>
+          <Grid item container direction="column" className={classes.textContainerMax40}>
             <Grid item>
               <Typography variant="h2" align={viewportIsMediumOrBelow ? 'center' : undefined}>
                 Custom Software Development
@@ -205,7 +205,7 @@ const CustomSoftware = () => {
           alignItems={viewportIsMediumOrBelow ? 'center' : undefined}
           justify="space-around"
         >
-          <Grid item container className={classes.textContainer} md>
+          <Grid item container className={classes.textContainerMax40} md>
             <Grid item container direction="column" md>
               <Grid item>
                 <Typography variant="h4" align={viewportIsSmallOrBelow ? 'center' : undefined}>
@@ -244,7 +244,7 @@ const CustomSoftware = () => {
           >
             <Lottie options={aniScaleOptions} isStopped={false} style={{ maxHeight: 260, maxWidth: 280 }} />
           </Grid>
-          <Grid item container className={classes.textContainer} md>
+          <Grid item container className={classes.textContainerMax40} md>
             <Grid item container direction="column">
               <Grid item>
                 <Typography variant="h4" align={viewportIsSmallOrBelow ? 'center' : 'right'}>
@@ -271,7 +271,7 @@ const CustomSoftware = () => {
               width={viewportIsSmallOrBelow ? '300em' : '450em'}
             />
           </Grid>
-          <Grid item container direction="column" alignItems="center" className={classes.textContainer}>
+          <Grid item container direction="column" alignItems="center" className={classes.textContainerMax40}>
             <Grid item md>
               <Typography variant="h4">Root Cause Analysis</Typography>
             </Grid>
@@ -293,7 +293,7 @@ const CustomSoftware = () => {
           alignItems={viewportIsMediumOrBelow ? 'center' : undefined}
           justify="space-around"
         >
-          <Grid item container className={classes.textContainer} md>
+          <Grid item container className={classes.textContainerMax40} md>
             <Grid item container direction="column">
               <Grid item>
                 <Typography variant="h4" align={viewportIsSmallOrBelow ? 'center' : undefined}>
@@ -334,7 +334,7 @@ const CustomSoftware = () => {
           >
             <Lottie options={aniUxOptions} isStopped={false} style={{ maxHeight: 310, maxWidth: 155 }} />
           </Grid>
-          <Grid item container className={classes.textContainer} md>
+          <Grid item container className={classes.textContainerMax40} md>
             <Grid item container direction="column">
               <Grid item>
                 <Typography variant="h4" align={viewportIsSmallOrBelow ? 'center' : 'right'}>

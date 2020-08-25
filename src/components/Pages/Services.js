@@ -115,7 +115,7 @@ const Services = () => {
               component={Link}
               to="/mobileapps"
               onClick={() => {
-                handleSetNavChoice(5);
+                handleSetNavChoice(1);
                 handleSetSelectedSubMenuItem(2);
               }}
               variant="outlined"
