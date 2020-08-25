@@ -1,8 +1,13 @@
+/* eslint-disable no-unused-vars */
 import { createMuiTheme } from '@material-ui/core/styles';
+import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 
 const arcBlue = '#0b72b9';
 const arcOrange = '#ffba60';
 const arcGray = '#868686';
+
+const breakpoints = createBreakpoints({});
+// example use:  [breakpoints.down('sm')]: { ... }
 
 const theme = createMuiTheme({
   palette: {
