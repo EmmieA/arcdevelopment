@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: '1em',
     },
   },
-  textContainerMax40: {
+  paragraphContainer: {
     maxWidth: '40em',
   },
   arrowContainer: {
@@ -75,7 +75,7 @@ const MobileApps = () => {
             </Grid>
           </Hidden>
 
-          <Grid item md className={classes.textContainerMax40}>
+          <Grid item md className={classes.paragraphContainer}>
             <Typography variant="h2">iOS/Android App Development</Typography>
             <Typography paragraph>Mobile apps allow you to take your tools on the go.</Typography>
             <Typography paragraph>

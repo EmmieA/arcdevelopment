@@ -15,6 +15,7 @@ import LandingPage from './LandingPage';
 import Services from './Pages/Services';
 import CustomSoftware from './Pages/CustomSoftware';
 import MobileApps from './Pages/MobileApps';
+import Websites from './Pages/Websites';
 
 function App() {
   return (
@@ -39,7 +40,7 @@ function App() {
               <Route exact path="/services" component={Services} />
               <Route exact path="/customsoftware" component={CustomSoftware} />
               <Route exact path="/mobileapps" component={MobileApps} />
-              <Route exact path="/websites" component={() => <div>Websites</div>} />
+              <Route exact path="/websites" component={Websites} />
               <Route exact path="/revolution" component={() => <div>The Revolution</div>} />
               <Route exact path="/about" component={() => <div>About Us</div>} />
               <Route exact path="/contact" component={() => <div>Contact Us</div>} />
