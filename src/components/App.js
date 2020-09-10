@@ -16,6 +16,7 @@ import Services from './Pages/Services';
 import CustomSoftware from './Pages/CustomSoftware';
 import MobileApps from './Pages/MobileApps';
 import Websites from './Pages/Websites';
+import RevolutionCssOnly from './Pages/RevolutionCssOnly';
 
 function App() {
   return (
@@ -41,7 +42,7 @@ function App() {
               <Route exact path="/customsoftware" component={CustomSoftware} />
               <Route exact path="/mobileapps" component={MobileApps} />
               <Route exact path="/websites" component={Websites} />
-              <Route exact path="/revolution" component={() => <div>The Revolution</div>} />
+              <Route exact path="/revolution" component={RevolutionCssOnly} />
               <Route exact path="/about" component={() => <div>About Us</div>} />
               <Route exact path="/contact" component={() => <div>Contact Us</div>} />
               <Route exact path="/estimate" component={() => <div>Estimate</div>} />
